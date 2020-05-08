@@ -45,11 +45,14 @@ public class AdminRestController extends AbstractUserController {
         super.delete(id);
     }
 
-    @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody User user, @PathVariable int id) {
-        super.update(user, id);
+    public ResponseEntity<User> updateUser(@Valid @RequestBody User user, @PathVariable int id) {
+        User updated = super.update(user, id);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .buildAndExpand(updated.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(updated);
     }
 
     @GetMapping("/by")

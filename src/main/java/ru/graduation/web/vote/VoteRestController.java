@@ -60,7 +60,6 @@ public class VoteRestController {
         return service.getToday(userId);
     }
 
-
     @PostMapping(value = "/restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vote> createWithLocation(@PathVariable int restaurantId) {
         log.info("create vote");
@@ -74,11 +73,14 @@ public class VoteRestController {
 
     @PutMapping(value = "/{id}/restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@PathVariable int id, @PathVariable int restaurantId) {
+    public ResponseEntity<Vote>  update(@PathVariable int id, @PathVariable int restaurantId) {
         log.info("update {}", id);
         checkTime();
         int userId = SecurityUtil.authUserId();
-        service.update(id, restaurantId, userId);
+        Vote updated = service.update(id, restaurantId, userId);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .buildAndExpand(updated.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(updated);
     }
-
 }

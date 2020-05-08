@@ -34,9 +34,9 @@ public class MenuService {
         return repository.getAllbyToday(restaurantId);
     }
 
-    public void update(Menu menu, int restaurantId) {
+    public Menu update(Menu menu, int restaurantId, int id) {
         Assert.notNull(menu, "menu must not be null");
-        repository.save(menu, restaurantId);
+        return checkNotFoundWithId(repository.save(menu, restaurantId), id);
     }
 
 }

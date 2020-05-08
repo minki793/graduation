@@ -60,9 +60,13 @@ public class MenuRestController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody Menu menu, @PathVariable int restaurantId, @PathVariable int id) {
+    public ResponseEntity<Menu> update(@Valid @RequestBody Menu menu, @PathVariable int restaurantId, @PathVariable int id) {
         assureIdConsistent(menu, id);
-        service.update(menu, restaurantId);
+        Menu updated = service.update(menu, restaurantId, id);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .buildAndExpand(restaurantId, updated.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(updated);
     }
 
 }

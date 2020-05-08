@@ -60,16 +60,16 @@ public class UserService implements UserDetailsService {
     }
 
     @CacheEvict(value = "users", allEntries = true)
-    public void update(User user) {
+    public User update(User user) {
         Assert.notNull(user, "user must not be null");
-        prepareAndSave(user);
+        return prepareAndSave(user);
     }
 
     @CacheEvict(value = "users", allEntries = true)
     @Transactional
-    public void update(UserTo userTo) {
+    public User update(UserTo userTo) {
         User user = get(userTo.id());
-        prepareAndSave(UserUtil.updateFromTo(user, userTo));
+        return prepareAndSave(UserUtil.updateFromTo(user, userTo));
     }
 
     @Override

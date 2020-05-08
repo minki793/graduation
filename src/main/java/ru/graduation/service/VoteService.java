@@ -37,9 +37,9 @@ public class VoteService {
     }
 
     @Transactional
-    public void update(int id, int restaurantId, int userId) {
+    public Vote update(int id, int restaurantId, int userId) {
         Vote vote = new Vote(id);
-        checkNotFoundWithId(repository.save(vote, userId, restaurantId), id);
+        return checkNotFoundWithId(repository.save(vote, userId, restaurantId), id);
     }
 
     @Transactional
