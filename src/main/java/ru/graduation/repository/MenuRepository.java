@@ -12,7 +12,6 @@ import java.util.List;
 public class MenuRepository {
     private final CrudMenuRepository crudMenuRepository;
     private final CrudRestaurantRepository crudRestaurantRepository;
-    private final Sort sort = Sort.by(Sort.Direction.ASC, "dish");
 
     public MenuRepository(CrudMenuRepository crudMenuRepository, CrudRestaurantRepository crudRestaurantRepository) {
         this.crudMenuRepository = crudMenuRepository;
@@ -33,7 +32,7 @@ public class MenuRepository {
     }
 
     public Menu get(int id, int restaurantId) {
-        return crudMenuRepository.findById(id).filter(menu -> menu.getRestaurant().id() == restaurantId).orElse(null);
+        return crudMenuRepository.findById(id).filter(menu -> menu.getRestaurant().getId() == restaurantId).orElse(null);
     }
 
     public List<Menu> getAll(int restaurantId) {

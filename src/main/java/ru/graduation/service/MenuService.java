@@ -26,8 +26,8 @@ public class MenuService {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
-    public Menu getWithRestaurant(int id, int restaurantId) {
-        return checkNotFoundWithId(repository.getWithRestaurant(id, restaurantId), id);
+    public Menu get(int id, int restaurantId) {
+        return checkNotFoundWithId(repository.get(id, restaurantId), id);
     }
 
     public List<Menu> getAllbyToday(int restaurantId) {

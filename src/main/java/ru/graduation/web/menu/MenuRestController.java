@@ -37,7 +37,7 @@ public class MenuRestController {
     @GetMapping("/{id}")
     public Menu get(@PathVariable int restaurantId, @PathVariable int id) {
         log.info("get {}", id);
-        return service.getWithRestaurant(id, restaurantId);
+        return service.get(id, restaurantId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

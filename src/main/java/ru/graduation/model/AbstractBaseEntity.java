@@ -32,7 +32,7 @@ public abstract class AbstractBaseEntity  implements HasId {
 
 
     public int id() {
-       Assert.notNull(id, "Entity must has id");
+        Assert.notNull(id, "Entity must has id");
         return id;
     }
 
