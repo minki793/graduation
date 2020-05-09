@@ -17,7 +17,7 @@
 `curl -s -X PUT -d '{"name":"User11Upd","email":"user1@yandex.ru","password":"password1"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/profile --user user1@yandex.ru:password1`
 
 #### delete Profile
-`curl -s -X DELETE http://localhost:8080/topjava/rest/profile --user test@mail.ru:test-password`
+`curl -s -X DELETE http://localhost:8080/graduation/rest/profile --user test@mail.ru:test-password`
 
 #### get All Restaurants
 `curl -s http://localhost:8080/graduation/rest/restaurants --user user1@yandex.ru:password1`
@@ -56,7 +56,7 @@
 `curl -s http://localhost:8080/graduation/rest/votes/today --user user2@yandex.ru:password2`
 
 #### get Votes not found
-`curl -s -v http://localhost:8080/topjava/graduation/rest/votes/100028 --user user2@yandex.ru:password2`
+`curl -s http://localhost:8080/graduation/rest/votes/100028 --user user2@yandex.ru:password2`
 
 #### delete Votes
 `curl -s -X DELETE http://localhost:8080/graduation/rest/votes/100028 --user user3@yandex.ru:password3`
