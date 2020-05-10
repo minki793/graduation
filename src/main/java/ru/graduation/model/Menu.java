@@ -45,10 +45,11 @@ public class Menu extends AbstractBaseEntity {
     public Menu() {
     }
 
-    public Menu(Integer id, LocalDate date, String dish, Restaurant restaurant) {
+    public Menu(Integer id, LocalDate date, String dish, Integer price, Restaurant restaurant) {
         super(id);
         this.date = date;
         this.dish = dish;
+        this.price = price;
         this.restaurant = restaurant;
     }
 
@@ -72,6 +73,14 @@ public class Menu extends AbstractBaseEntity {
         return restaurant;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
@@ -81,7 +90,8 @@ public class Menu extends AbstractBaseEntity {
         return "Menu{" +
                 ", id=" + id +
                 ", date=" + date +
-                ", dish='" + dish + '\'' +
+                ", dish='" + dish +
+                ", price=" + price + '\'' +
                 '}';
     }
 }
