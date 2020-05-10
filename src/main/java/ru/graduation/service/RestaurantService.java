@@ -50,5 +50,4 @@ public class RestaurantService {
         return checkNotFoundWithId(repository.save(restaurant), id);
     }
 
-
 }

@@ -63,10 +63,7 @@ public class MenuRestController {
     public ResponseEntity<Menu> update(@Valid @RequestBody Menu menu, @PathVariable int restaurantId, @PathVariable int id) {
         assureIdConsistent(menu, id);
         Menu updated = service.update(menu, restaurantId, id);
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
-                .buildAndExpand(restaurantId, updated.getId()).toUri();
-        return ResponseEntity.created(uriOfNewResource).body(updated);
+        return ResponseEntity.ok(updated);
     }
 
 }

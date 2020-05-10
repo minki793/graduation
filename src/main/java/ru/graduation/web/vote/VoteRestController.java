@@ -78,11 +78,7 @@ public class VoteRestController {
         checkTime();
         int userId = SecurityUtil.authUserId();
         Vote updated = service.update(id, restaurantId, userId);
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
-                .buildAndExpand(updated.getId()).toUri();
-
-        return ResponseEntity.created(uriOfNewResource).body(updated);
+        return ResponseEntity.ok(updated);
 
     }
 }

@@ -60,8 +60,10 @@ public class UserService implements UserDetailsService {
     }
 
     @CacheEvict(value = "users", allEntries = true)
+    @Transactional
     public User update(User user) {
         Assert.notNull(user, "user must not be null");
+        get(user.id());
         return prepareAndSave(user);
     }
 

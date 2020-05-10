@@ -2,6 +2,7 @@ package ru.graduation.repository;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.graduation.model.Restaurant;
 
 import java.time.LocalDate;
@@ -15,7 +16,11 @@ public class RestaurantRepository {
         this.crudRepository = crudRepository;
     }
 
+    @Transactional
     public Restaurant save(Restaurant restaurant) {
+        if (!restaurant.isNew() && get(restaurant.id()) == null) {
+            return null;
+        }
         return crudRepository.save(restaurant);
     }
 
