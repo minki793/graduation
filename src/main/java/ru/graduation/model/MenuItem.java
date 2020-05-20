@@ -16,21 +16,16 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "menus", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "dish", "date"}, name = "menus_unique_restaurant_dish_datetime_idx")})
+@Table(name = "menu_items", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "name", "date"}, name = "menu_items_unique_restaurant_name_datetime_idx")})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class Menu extends AbstractBaseEntity {
+public class MenuItem extends AbstractNamedEntity {
 
     @Column(name = "date", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date = LocalDate.now();
-
-    @Column(name = "dish", nullable = false)
-    @NotBlank
-    @Size(min = 2, max = 100)
-    private String dish;
 
     @Column(name = "price", nullable = false)
     @NotNull
@@ -42,13 +37,12 @@ public class Menu extends AbstractBaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
-    public Menu() {
+    public MenuItem() {
     }
 
-    public Menu(Integer id, LocalDate date, String dish, Integer price, Restaurant restaurant) {
-        super(id);
+    public MenuItem(Integer id, LocalDate date, String name, Integer price, Restaurant restaurant) {
+        super(id, name);
         this.date = date;
-        this.dish = dish;
         this.price = price;
         this.restaurant = restaurant;
     }
@@ -61,13 +55,6 @@ public class Menu extends AbstractBaseEntity {
         this.date = date;
     }
 
-    public String getDish() {
-        return dish;
-    }
-
-    public void setDish(String dish) {
-        this.dish = dish;
-    }
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -87,10 +74,10 @@ public class Menu extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        return "Menu{" +
+        return "MenuItem{" +
                 ", id=" + id +
                 ", date=" + date +
-                ", dish='" + dish +
+                ", dish='" + name +
                 ", price=" + price + '\'' +
                 '}';
     }

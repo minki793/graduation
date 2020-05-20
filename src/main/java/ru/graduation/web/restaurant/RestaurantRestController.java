@@ -23,15 +23,19 @@ import static ru.graduation.util.ValidationUtil.checkNew;
 public class RestaurantRestController {
     @Autowired
     private RestaurantService service;
-
     protected final Logger log = LoggerFactory.getLogger(getClass());
-
     static final String REST_URL = "/rest/restaurants";
 
     @GetMapping
     public List<Restaurant> getAll() {
         log.info("getAll");
         return service.getAll();
+    }
+
+    @GetMapping("/fullData")
+    public List<Restaurant> getAllWithMenu() {
+        log.info("getAllWithMenu");
+        return service.getAllWithMenu();
     }
 
     @GetMapping("/{id}")
@@ -41,34 +45,8 @@ public class RestaurantRestController {
     }
 
     @GetMapping("/{id}/fullData")
-    public Restaurant getWithMenus(@PathVariable int id) {
-        log.info("getWithMenus {}", id);
-        return service.getWithMenus(id);
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createWithLocation(@Valid @RequestBody Restaurant restaurant) {
-        log.info("create {}", restaurant);
-        checkNew(restaurant);
-        Restaurant created = service.create(restaurant);
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
-                .buildAndExpand(created.getId()).toUri();
-        return ResponseEntity.created(uriOfNewResource).body(created);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-        log.info("delete {}", id);
-        service.delete(id);
-    }
-
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public ResponseEntity<Restaurant> update(@Valid @RequestBody Restaurant restaurant, @PathVariable int id) {
-        assureIdConsistent(restaurant, id);
-        Restaurant updated = service.update(restaurant, id);
-        return ResponseEntity.ok(updated);
+    public Restaurant getWithMenu(@PathVariable int id) {
+        log.info("getWithMenu {}", id);
+        return service.getWithMenu(id);
     }
 }

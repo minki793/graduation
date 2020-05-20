@@ -33,11 +33,15 @@ public class RestaurantRepository {
     }
 
     public List<Restaurant> getAll() {
-        return crudRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+        return crudRepository.findAll();
     }
 
-    public Restaurant getWithMenus(int id) {
-        return crudRepository.getWithMenus(id, LocalDate.now());
+    public List<Restaurant> getAllWithMenu() {
+        return crudRepository.getAllWithMenu();
+    }
+
+    public Restaurant getWithMenu(int id) {
+        return crudRepository.getWithMenu(id, LocalDate.now());
     }
 
 }

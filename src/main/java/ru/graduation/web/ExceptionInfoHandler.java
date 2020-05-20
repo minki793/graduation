@@ -34,9 +34,15 @@ public class ExceptionInfoHandler {
     private static final Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "Пользователь с такой почтой уже есть в приложении";
+    public static final String EXCEPTION_DUPLICATE_VOTE = "Голосование сегодня уже было, можно поменять старый голос";
+    public static final String EXCEPTION_DUPLICATE_RESTAURANT = "Ресторан с таким наименованием уже есть в приложении";
+    public static final String EXCEPTION_DUPLICATE_MENU_ITEM = "Блюдо уже добавлено в сегодняшнее ресторанное меню";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Map.of(
-            "users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL);
+            "users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL,
+            "menu_items_unique_date_restaurant_name_idx", EXCEPTION_DUPLICATE_MENU_ITEM,
+            "restaurants_unique_name_idx", EXCEPTION_DUPLICATE_RESTAURANT,
+            "votes_unique_date_user_idx", EXCEPTION_DUPLICATE_VOTE);
 
 
     @ExceptionHandler(ApplicationException.class)
@@ -92,5 +98,4 @@ public class ExceptionInfoHandler {
                 errorType.getErrorCode(),
                 details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)});
     }
-
 }
