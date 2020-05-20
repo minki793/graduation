@@ -1,4 +1,4 @@
-DELETE FROM menus;
+DELETE FROM menu_items;
 DELETE FROM user_roles;
 DELETE FROM votes;
 DELETE FROM users;
@@ -28,7 +28,7 @@ INSERT INTO restaurants (name) VALUES
 ('rest 3');
 
 
-INSERT INTO menus (date, restaurant_id, dish, price) VALUES
+INSERT INTO menu_items (date, restaurant_id, name, price) VALUES
 ('2020-05-01', 100005, 'dish 5', 200),
 ('2020-05-01', 100005, 'dish 2', 220),
 ('2020-05-01', 100006, 'dish 4', 325),

@@ -8,12 +8,6 @@
         <http-basic/>
         <intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/rest/profile/register" access="isAnonymous()"/>
-        <intercept-url pattern="/rest/restaurants/**" method="POST" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/rest/restaurants/**" method="PUT" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/rest/restaurants/**" method="DELETE" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/rest/restaurant/**" method="POST" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/rest/restaurant/**" method="PUT" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/rest/restaurant/**" method="DELETE" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>

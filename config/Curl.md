@@ -22,8 +22,11 @@
 #### get All Restaurants
 `curl -s http://localhost:8080/graduation/rest/restaurants --user user1@yandex.ru:password1`
 
+#### get All Restaurants with menu
+`curl -s http://localhost:8080/graduation/rest/restaurants/fullData  --user user1@yandex.ru:password1`
+
 #### create Restaurants
-`curl -s -X POST -d '{"name":"rest 4"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/restaurants --user admin@gmail.com:admin`
+`curl -s -X POST -d '{"name":"rest 4"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/admin/restaurants --user admin@gmail.com:admin`
 
 #### get Restaurants 100007
 `curl -s http://localhost:8080/graduation/rest/restaurants/100007  --user admin@gmail.com:admin`
@@ -32,22 +35,22 @@
 `curl -s http://localhost:8080/graduation/rest/restaurants/100006/fullData  --user admin@gmail.com:admin`
 
 #### delete Restaurants 100008
-`curl -s -X DELETE http://localhost:8080/graduation/rest/restaurants/100008 --user admin@gmail.com:admin`
+`curl -s -X DELETE http://localhost:8080/graduation/rest/admin/restaurants/100008 --user admin@gmail.com:admin`
 
-#### get All today Menus in Restaurant 100006 
-`curl -s http://localhost:8080/graduation/rest/restaurant/100006/menus --user user1@yandex.ru:password1`
+#### get All today MenuItems in Restaurant 100006 
+`curl -s http://localhost:8080/graduation/rest/restaurant/100006/menuitems --user user1@yandex.ru:password1`
 
-#### create Menus in Restaurant 100006 
-`curl -s -X POST -d '{"dish":"dish 1","price":1000}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/restaurant/100006/menus --user admin@gmail.com:admin`
+#### create MenuItems in Restaurant 100006 
+`curl -s -X POST -d '{"name":"dish 1","price":1000}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/admin/restaurant/100006/menuitems --user admin@gmail.com:admin`
 
-#### update Menus 100013 in Restaurant 100007 
-`curl -s -X PUT -d '{"date":"2020-05-01","dish":"dish 6","price":1000}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/restaurant/100007/menus/100013 --user admin@gmail.com:admin`
+#### update MenuItems 100013 in Restaurant 100007 
+`curl -s -X PUT -d '{"date":"2020-05-01","name":"dish 6","price":1000}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/admin/restaurant/100007/menuitem/100013 --user admin@gmail.com:admin`
 
-#### get Menus 100013 in Restaurant 100007  
-`curl -s http://localhost:8080/graduation/rest/restaurant/100007/menus/100013 --user admin@gmail.com:admin`
+#### get MenuItems 100013 in Restaurant 100007  
+`curl -s http://localhost:8080/graduation/rest/restaurant/100007/menuitems/100013 --user admin@gmail.com:admin`
 
-#### delete Menus 100013
-`curl -s -X DELETE http://localhost:8080/graduation/rest/restaurant/100007/menus/100013 --user admin@gmail.com:admin`
+#### delete MenuItem 100013
+`curl -s -X DELETE http://localhost:8080/graduation/rest/admin/restaurant/100007/menuitems/100013 --user admin@gmail.com:admin`
 
 #### get Votes
 `curl -s http://localhost:8080/graduation/rest/votes --user user2@yandex.ru:password2`
@@ -60,7 +63,7 @@
 
 #### delete Votes
 `curl -s -X DELETE http://localhost:8080/graduation/rest/votes/100028 --user user3@yandex.ru:password3`
-
+__
 #### create Restaurant 100006 Votes 
 `curl -s -X POST -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/graduation/rest/votes/restaurant/100006 --user admin@gmail.com:admin`
 

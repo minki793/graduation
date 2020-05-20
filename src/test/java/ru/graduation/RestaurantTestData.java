@@ -5,7 +5,7 @@ import ru.graduation.model.Restaurant;
 import static ru.graduation.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
-    public static TestMatcher<Restaurant> RESTAURANT_MATCHER = TestMatcher.usingFieldsComparator(Restaurant.class, "menus");
+    public static TestMatcher<Restaurant> RESTAURANT_MATCHER = TestMatcher.usingFieldsComparator(Restaurant.class, "menu");
 
     public static final int RESTAURANT_ID1 = START_SEQ + 5;
     public static final int RESTAURANT_ID2 = START_SEQ + 6;
